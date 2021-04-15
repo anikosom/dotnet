@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using ToDoWebApplication.Domain.Contracts;
 
 namespace ToDoWebApplication.Domain
 {
-    public class Task
+    public class Task : ICategoryContainer
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
@@ -15,6 +16,8 @@ namespace ToDoWebApplication.Domain
 
         public bool IsDone { get; set; }
 
-        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
+
+        int? ICategoryContainer.CategoryId => this.Category.Id;
     }
 }
